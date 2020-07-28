@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AppBar, Toolbar, Container, Grid } from '@material-ui/core';
+import MapContainer from './component/Map/Map';
+import Events from './component/Events/Events';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider className="App" store={ store }>
+        <AppBar color="inherit" className="appBar">
+          <Toolbar disableGutters>
+            <img src='/images/logo.png' alt="logo" className="App-logo" />
+          </Toolbar>
+        </AppBar>
+        <Container maxWidth="md" className="container ">
+          <Grid container spacing={ 3 }>
+            <Events />
+            <Grid item xs={ 11 } sm={ 12 } md={ 6 } className="mapContainer" justify="center">
+              <MapContainer className="map" />
+            </Grid>
+          </Grid>
+      </Container>
+    </Provider>
   );
 }
 
